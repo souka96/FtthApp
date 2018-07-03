@@ -6,6 +6,7 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -14,9 +15,11 @@ import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
     GoogleMap mGoogleMap ;
+    MaterialSearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,15 +28,46 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
              setContentView(R.layout.activity_main);
              initMap();
         }
-             else{}
+        else{}
+        searchView = (MaterialSearchView) findViewById(R.id.search_view);
+        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                //Do some magic
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                //Do some magic
+                return false;
+            }
+        });
+
+        searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
+            @Override
+            public void onSearchViewShown() {
+                //Do some magic
+            }
+
+            @Override
+            public void onSearchViewClosed() {
+                //Do some magic
+            }
+        });
     }
+
     private void initMap(){
         MapFragment mapFragment =(MapFragment) getFragmentManager().findFragmentById(R.id.mapFragment);
         mapFragment.getMapAsync(this);
 
     }
+
+
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menuu, menu);
+        MenuItem item = menu.findItem(R.id.action_search);
+        searchView.setMenuItem(item);
         // Retrieve the SearchView and plug it into SearchManager
         final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
         SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);

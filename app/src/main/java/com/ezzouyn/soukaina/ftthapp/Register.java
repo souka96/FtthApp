@@ -22,7 +22,7 @@ public class Register extends AppCompatActivity {
         signup = findViewById(R.id.btnRegister);
         logme = findViewById(R.id.btnLinkToLoginScreen);
     }
-    // save user register info
+
    public void saveInfo(View view ){
        SharedPreferences sharedPref = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
        SharedPreferences.Editor editor = sharedPref.edit();
@@ -30,6 +30,9 @@ public class Register extends AppCompatActivity {
        editor.putString("password",passwd.getText().toString());
        editor.putString("useremail",email.getText().toString());
        editor.apply();
+
+   }
+   private void register(View view){
 
    }
 
