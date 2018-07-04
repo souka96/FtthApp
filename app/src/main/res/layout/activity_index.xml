@@ -17,7 +17,7 @@
         app:icon_color="@color/colorAccent"
         app:duration_ring="700"
         app:duration_close="700"
-        app:distance="10dp"
+        app:distance="70dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         >
